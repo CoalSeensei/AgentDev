@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智能旅行系统 - 预览</title>
+    <style>
+      :root {
+        --bg: #edf4ff;
+        --bg-soft: #eefbf6;
+        --card: rgba(255, 255, 255, 0.92);
+        --text: #193046;
+        --muted: #667085;
+        --accent: #0fa3a2;
+        --accent-2: #3f86ea;
+        --line: rgba(33, 150, 120, 0.14);
+        --shadow: 0 22px 55px rgba(98, 116, 164, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      <main class="page-content preview-board">
+        <div class="preview-note">
+          这个页面专门用于生成项目预览图。建议对下方几个块分别截图，而不是直接截整页，这样可以避免出现大面积白框和只截到局部内容。
+        </div>
+
+        <section class="screenshot-frame shot-hero">
+          <header class="hero" style="margin-bottom: 0;">
+            <div class="hero__badge">智能旅行系统</div>
+            <h1 class="hero__title">智能旅行系统</h1>
+            <p class="hero__subtitle">把目的地、路线、预算和天气，组织成一份可直接执行的旅行方案。</p>
+            <div class="hero__tabs">
+              <div class="hero__tab hero__tab--active">规划页</div>
+              <div class="hero__tab">结果页</div>
+              <div class="hero__tab">历史列表</div>
+            </div>
+          </header>
+        </section>
+
+        <section class="screenshot-frame shot-home">
+          <div class="planner-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="section-title"><span class="section-title__icon">📍</span><span>旅行方案输入</span></div>
+            <div class="row">
+              <div style="grid-column: span 8;">
+                <label class="label">目的地城市</label>
+                <div class="field"><div class="input">大理</div></div>
+              </div>
+              <div style="grid-column: span 2;">
+                <label class="label">开始日期</label>
+                <div class="field"><div class="input">2026-05-13</div></div>
+              </div>
+              <div style="grid-column: span 2;">
+                <label class="label">结束日期</label>
+                <div class="field"><div class="input">2026-05-15</div></div>
+              </div>
+              <div style="grid-column: span 2;">
+                <label class="label">人数</label>
+                <div class="field"><div class="input">2</div></div>
+              </div>
+              <div style="grid-column: span 2;">
+                <label class="label">旅行天数</label>
+                <div class="pill">3 天</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="planner-card" style="box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="section-title"><span class="section-title__icon">⚙️</span><span>偏好与预算</span></div>
+            <div class="row">
+              <div style="grid-column: span 4;">
+                <label class="label">节奏偏好</label>
+                <div class="field"><div class="input">轻松</div></div>
+              </div>
+              <div style="grid-column: span 4;">
+                <label class="label">住宿偏好</label>
+                <div class="field"><div class="input">舒适型</div></div>
+              </div>
+              <div style="grid-column: span 4;">
+                <label class="label">预算</label>
+                <div class="field"><div class="input">3200</div></div>
+              </div>
+            </div>
+            <div style="margin-top: 18px;">
+              <label class="label">旅行偏好</label>
+              <div class="checkboxes">
+                <span class="chip">自然风景</span>
+                <span class="chip">拍照</span>
+                <span class="chip">美食</span>
+                <span class="chip">古镇</span>
+              </div>
+            </div>
+            <div style="margin-top: 18px;">
+              <label class="label">饮食偏好</label>
+              <div class="checkboxes">
+                <span class="chip">少辣</span>
+                <span class="chip">不吃香菜</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="planner-card" style="box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="section-title"><span class="section-title__icon">💬</span><span>补充要求</span></div>
+            <div class="textarea" style="min-height: 110px; line-height: 1.8;">不想太早起床，希望安排一个适合看日落的地点。</div>
+          </div>
+
+          <div class="submit-panel">
+            <button class="btn">生成方案</button>
+            <div class="status" style="margin-top: 12px;">当前已接上 `/trip/generate`，生成成功后会直接展示真实旅行方案。</div>
+          </div>
+        </section>
+
+        <section class="screenshot-frame shot-result">
+          <div class="content-grid" style="margin: 0;">
+            <aside class="sidebar-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+              <div class="sidebar-card__title">方案导航</div>
+              <ul class="sidebar-list">
+                <li>方案概览</li>
+                <li>预算明细</li>
+                <li>按天花费</li>
+                <li>智能调整</li>
+                <li>景点地图</li>
+                <li>天气信息</li>
+                <li>点位明细</li>
+                <li>每日行程</li>
+              </ul>
+
+              <div class="sidebar-actions">
+                <button class="mini-btn">返回规划页</button>
+                <button class="mini-btn">保存行程</button>
+                <button class="mini-btn light">历史列表</button>
+                <button class="mini-btn">导出 PDF</button>
+                <button class="mini-btn light">导出 Markdown</button>
+              </div>
+            </aside>
+
+            <section class="result-grid">
+              <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+                <div class="result-card__title">大理旅行方案</div>
+                <div class="info-row"><strong>行程 ID：</strong>demo-trip-001</div>
+                <div class="info-row"><strong>日期：</strong>2026-05-13 至 2026-05-15</div>
+                <div class="info-row"><strong>地点：</strong>大理</div>
+                <div class="info-row">围绕洱海、古城与慢节奏体验安排的轻松三日方案，兼顾拍照、餐饮和日落场景。</div>
+              </div>
+
+              <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+                <div class="result-card__title">预算明细</div>
+                <div class="budget-grid">
+                  <div class="budget-box"><div class="budget-box__label">景点门票</div><div class="budget-box__value">¥160</div></div>
+                  <div class="budget-box"><div class="budget-box__label">酒店住宿</div><div class="budget-box__value">¥1400</div></div>
+                  <div class="budget-box"><div class="budget-box__label">餐饮费用</div><div class="budget-box__value">¥780</div></div>
+                  <div class="budget-box"><div class="budget-box__label">交通费用</div><div class="budget-box__value">¥420</div></div>
+                </div>
+                <div class="budget-total"><span>预估总费用</span><strong>¥2760</strong></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="screenshot-frame shot-map">
+          <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="result-card__title">景点地图</div>
+            <div class="map-box">
+              <div class="map-line"></div>
+              <div class="map-tag tag-a">大理古城</div>
+              <div class="map-tag tag-b">洱海生态廊道</div>
+              <div class="map-tag tag-c">双廊古镇</div>
+            </div>
+          </div>
+
+          <div class="card result-card" style="margin: 18px 0 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="result-card__title">天气提示</div>
+            <div class="weather-grid">
+              <div class="weather-card">
+                <div class="weather-card__date">05-13 周二</div>
+                <div class="weather-card__temp">24° / 16°</div>
+                <div class="weather-card__desc">白天：多云</div>
+                <div class="weather-card__desc">夜间：晴</div>
+              </div>
+              <div class="weather-card">
+                <div class="weather-card__date">05-14 周三</div>
+                <div class="weather-card__temp">23° / 15°</div>
+                <div class="weather-card__desc">白天：小雨</div>
+                <div class="weather-card__desc">夜间：阵雨</div>
+              </div>
+              <div class="weather-card">
+                <div class="weather-card__date">05-15 周四</div>
+                <div class="weather-card__temp">25° / 17°</div>
+                <div class="weather-card__desc">白天：晴</div>
+                <div class="weather-card__desc">夜间：晴</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screenshot-frame shot-history">
+          <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+            <div class="result-card__title">历史方案</div>
+            <div class="history-grid">
+              <article class="history-card">
+                <div class="history-card__destination">大理 方案</div>
+                <div class="history-card__trip-id">demo-trip-001</div>
+                <p class="history-card__summary">三天轻松路线，主打洱海慢游、古城拍照和日落安排。</p>
+                <div class="history-card__actions">
+                  <button class="history-card__button">查看详情</button>
+                  <button class="history-card__button history-card__button--danger">删除行程</button>
+                </div>
+              </article>
+              <article class="history-card">
+                <div class="history-card__destination">成都 方案</div>
+                <div class="history-card__trip-id">demo-trip-002</div>
+                <p class="history-card__summary">围绕美食、熊猫和城市慢节奏安排的三日路线。</p>
+                <div class="history-card__actions">
+                  <button class="history-card__button">查看详情</button>
+                  <button class="history-card__button history-card__button--danger">删除行程</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+
+      .field,
+      .pill,
+      .btn,
+      .budget-box,
+      .history-card,
+      .weather-card {
+        border-radius: 14px;
+      }
+
+      .field {
+        padding: 14px 16px;
+        background: #fff;
+        border: 1px solid #e8eef7;
+      }
+
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        color: #667085;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .input,
+      .select,
+      .textarea {
+        width: 100%;
+        border: 1px solid #e8eef7;
+        border-radius: 12px;
+        padding: 12px 14px;
+        font: inherit;
+        color: #334155;
+        background: #fff;
+      }
+
+      .pill {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        background: linear-gradient(135deg, #20b2aa 0%, #4f8ee8 100%);
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .checkboxes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(15, 163, 162, 0.08);
+        color: #146d68;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .submit-panel {
+        padding: 12px 8px 0;
+        text-align: center;
+      }
+
+      .btn {
+        min-width: 220px;
+        border: none;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #0fa3a2 0%, #3f86ea 100%);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 18px 35px rgba(47, 137, 189, 0.24);
+      }
+
+      .status,
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hero .status {
+        margin-top: 12px;
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      .screenshot-frame {
+        width: 100%;
+        padding: 18px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 20px 48px rgba(98, 116, 164, 0.1);
+      }
+
+      .shot-hero {
+        min-height: 420px;
+      }
+
+      .shot-home {
+        min-height: 620px;
+      }
+
+      .shot-result {
+        min-height: 860px;
+      }
+
+      .shot-history {
+        min-height: 320px;
+      }
+
+      .sidebar-list {
+        margin: 0;
+        padding-left: 18px;
+        color: #475467;
+        line-height: 1.9;
+      }
+
+      .sidebar-actions {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .mini-btn {
+        border: none;
+        border-radius: 14px;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, #0fa3a2 0%, #3f86ea 100%);
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .mini-btn.light {
+        background: rgba(33, 150, 120, 0.08);
+        color: #176d64;
+      }
+
+      .result-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .budget-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .budget-box {
+        padding: 16px;
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+        border: 1px solid #e7eef9;
+      }
+
+      .budget-box__label,
+      .history-card__trip-id,
+      .weather-card__desc,
+      .info-row,
+      .summary-text {
+        color: #667085;
+      }
+
+      .budget-box__value {
+        margin-top: 10px;
+        font-size: 24px;
+        font-weight: 800;
+        color: #243b57;
+      }
+
+      .budget-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+      }
+
+      .budget-total strong {
+        font-size: 22px;
+      }
+
+      .map-box {
+        min-height: 300px;
+        border-radius: 20px;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(15, 163, 162, 0.18), transparent 28%),
+          radial-gradient(circle at 80% 18%, rgba(63, 134, 234, 0.18), transparent 26%),
+          linear-gradient(135deg, #eff7ff 0%, #f7fffb 100%);
+        border: 1px solid #dde8f5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .map-line {
+        position: absolute;
+        inset: 30px;
+        border: 2px dashed rgba(15, 163, 162, 0.35);
+        border-radius: 26px;
+      }
+
+      .map-tag {
+        position: absolute;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 12px 28px rgba(98, 116, 164, 0.14);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .tag-a { top: 50px; left: 48px; }
+      .tag-b { top: 120px; right: 52px; }
+      .tag-c { bottom: 60px; left: 120px; }
+
+      .weather-grid,
+      .history-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+
+      .weather-card,
+      .history-card {
+        padding: 18px;
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+        border: 1px solid #e7eef9;
+      }
+
+      .weather-card__date,
+      .history-card__destination {
+        color: #32507a;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .weather-card__temp {
+        margin: 10px 0 8px;
+        font-size: 24px;
+        font-weight: 800;
+        color: #243b57;
+      }
+
+      .history-card__summary {
+        margin: 0;
+        line-height: 1.7;
+        color: #475467;
+      }
+
+      .history-card__actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .history-card__button {
+        border: none;
+        border-radius: 14px;
+        padding: 12px 14px;
+        background: linear-gradient(135deg, #0fa3a2 0%, #3f86ea 100%);
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .history-card__button--danger {
+        background: rgba(239, 68, 68, 0.12);
+        color: #c2410c;
+      }
+
+      @media (max-width: 960px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .shell {
+          padding: 24px 16px 40px;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
+
+        .subtitle {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="glow left"></div>
+      <div class="glow right"></div>
+
+      <header class="hero">
+        <div class="badge">智能旅行系统</div>
+        <h1>智能旅行系统</h1>
+        <p class="subtitle">把目的地、路线、预算和天气，组织成一份可直接执行的旅行方案。</p>
+        <div class="tabs">
+          <div class="tab active">规划页</div>
+          <div class="tab">结果页</div>
+          <div class="tab">历史列表</div>
+        </div>
+        <div class="status">这是一个独立静态预览页，用来查看当前前端视觉效果。</div>
+      </header>
+
+      <main class="page-content preview-board">
+        <div class="preview-note">
+          这个页面专门用于生成项目预览图。建议对下方四个块分别截图，而不是直接截整页，这样可以避免出现大面积白框和只截到局部内容。
+        </div>
+
+        <section class="screenshot-frame shot-hero">
+          <header class="hero" style="margin-bottom: 0;">
+            <div class="hero__badge">智能旅行系统</div>
+            <h1 class="hero__title">智能旅行系统</h1>
+            <p class="hero__subtitle">把目的地、路线、预算和天气，组织成一份可直接执行的旅行方案。</p>
+
+            <div class="hero__tabs">
+              <div class="hero__tab hero__tab--active">规划页</div>
+              <div class="hero__tab">结果页</div>
+              <div class="hero__tab">历史列表</div>
+            </div>
+          </header>
+        </section>
+
+        <section class="screenshot-frame shot-home">
+          <div class="planner-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+          <div class="section-title"><span class="section-title__icon">📍</span><span>旅行方案输入</span></div>
+          <div class="row">
+            <div style="grid-column: span 8;">
+              <label class="label">目的地城市</label>
+              <div class="field"><div class="input">大理</div></div>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="label">开始日期</label>
+              <div class="field"><div class="input">2026-05-13</div></div>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="label">结束日期</label>
+              <div class="field"><div class="input">2026-05-15</div></div>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="label">人数</label>
+              <div class="field"><div class="input">2</div></div>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="label">旅行天数</label>
+              <div class="pill">3 天</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="planner-card">
+          <div class="section-title"><span class="section-title__icon">⚙️</span><span>偏好与预算</span></div>
+          <div class="row">
+            <div style="grid-column: span 4;">
+              <label class="label">节奏偏好</label>
+              <div class="field"><div class="input">轻松</div></div>
+            </div>
+            <div style="grid-column: span 4;">
+              <label class="label">住宿偏好</label>
+              <div class="field"><div class="input">舒适型</div></div>
+            </div>
+            <div style="grid-column: span 4;">
+              <label class="label">预算</label>
+              <div class="field"><div class="input">3200</div></div>
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <label class="label">旅行偏好</label>
+            <div class="checkboxes">
+              <span class="chip">自然风景</span>
+              <span class="chip">拍照</span>
+            </div>
+          </section>
+              <span class="chip">古镇</span>
+          <section class="screenshot-frame shot-result">
+            <div class="content-grid" style="margin: 0;">
+              <aside class="sidebar-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+                <div class="sidebar-card__title">方案导航</div>
+                <ul class="sidebar-list">
+                  <li>方案概览</li>
+                  <li>预算明细</li>
+                  <li>按天花费</li>
+                  <li>智能调整</li>
+                  <li>景点地图</li>
+                  <li>天气信息</li>
+                  <li>点位明细</li>
+                  <li>每日行程</li>
+                </ul>
+
+                <div class="sidebar-actions">
+                  <button class="mini-btn">返回规划页</button>
+                  <button class="mini-btn">保存行程</button>
+                  <button class="mini-btn light">历史列表</button>
+                  <button class="mini-btn">导出 PDF</button>
+                  <button class="mini-btn light">导出 Markdown</button>
+                </div>
+              </aside>
+
+              <section class="result-grid">
+                <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+                  <div class="result-card__title">大理旅行方案</div>
+                  <div class="info-row"><strong>行程 ID：</strong>demo-trip-001</div>
+                  <div class="info-row"><strong>日期：</strong>2026-05-13 至 2026-05-15</div>
+                  <div class="info-row"><strong>地点：</strong>大理</div>
+                  <div class="info-row">围绕洱海、古城与慢节奏体验安排的轻松三日方案，兼顾拍照、餐饮和日落场景。</div>
+                </div>
+
+                <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+                  <div class="result-card__title">预算明细</div>
+                  <div class="budget-grid">
+                    <div class="budget-box"><div class="budget-box__label">景点门票</div><div class="budget-box__value">¥160</div></div>
+                    <div class="budget-box"><div class="budget-box__label">酒店住宿</div><div class="budget-box__value">¥1400</div></div>
+                    <div class="budget-box"><div class="budget-box__label">餐饮费用</div><div class="budget-box__value">¥780</div></div>
+                    <div class="budget-box"><div class="budget-box__label">交通费用</div><div class="budget-box__value">¥420</div></div>
+                  </div>
+                  <div class="budget-total"><span>预估总费用</span><strong>¥2760</strong></div>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="screenshot-frame shot-map">
+            <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+              <div class="result-card__title">景点地图</div>
+              <div class="map-box">
+                <div class="map-line"></div>
+                <div class="map-tag tag-a">大理古城</div>
+                <div class="map-tag tag-b">洱海生态廊道</div>
+                <div class="map-tag tag-c">双廊古镇</div>
+              </div>
+            </div>
+
+            <div class="card result-card" style="margin: 18px 0 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+              <div class="result-card__title">天气提示</div>
+              <div class="weather-grid">
+                <div class="weather-card">
+                  <div class="weather-card__date">05-13 周二</div>
+                  <div class="weather-card__temp">24° / 16°</div>
+                  <div class="weather-card__desc">白天：多云</div>
+                  <div class="weather-card__desc">夜间：晴</div>
+                </div>
+                <div class="weather-card">
+                  <div class="weather-card__date">05-14 周三</div>
+                  <div class="weather-card__temp">23° / 15°</div>
+                  <div class="weather-card__desc">白天：小雨</div>
+                  <div class="weather-card__desc">夜间：阵雨</div>
+                </div>
+                <div class="weather-card">
+                  <div class="weather-card__date">05-15 周四</div>
+                  <div class="weather-card__temp">25° / 17°</div>
+                  <div class="weather-card__desc">白天：晴</div>
+                  <div class="weather-card__desc">夜间：晴</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          </section>
+
+          <section class="screenshot-frame shot-history">
+            <div class="card result-card" style="margin: 0; box-shadow: none; background: rgba(255,255,255,0.96);">
+              <div class="result-card__title">历史方案</div>
+              <div class="history-grid">
+                <article class="history-card">
+                  <div class="history-card__destination">大理 方案</div>
+                  <div class="history-card__trip-id">demo-trip-001</div>
+                  <p class="history-card__summary">三天轻松路线，主打洱海慢游、古城拍照和日落安排。</p>
+                  <div class="history-card__actions">
+                    <button class="history-card__button">查看详情</button>
+                    <button class="history-card__button history-card__button--danger">删除行程</button>
+                  </div>
+                </article>
+                <article class="history-card">
+                  <div class="history-card__destination">成都 方案</div>
+                  <div class="history-card__trip-id">demo-trip-002</div>
+                  <p class="history-card__summary">围绕美食、熊猫和城市慢节奏安排的三日路线。</p>
+                  <div class="history-card__actions">
+                    <button class="history-card__button">查看详情</button>
+                    <button class="history-card__button history-card__button--danger">删除行程</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
